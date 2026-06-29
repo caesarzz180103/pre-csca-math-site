@@ -1227,6 +1227,171 @@ function difficultyClass(level) {
   return "";
 }
 
+const geometryDiagrams = {
+  "basic-geometry": {
+    title: "平行线与截线角度关系",
+    note: "看到平行线，先找同位角、内错角、同旁内角；图中 68° 与 112° 是一组互补角。",
+    svg: `
+      <svg viewBox="0 0 520 260" role="img" aria-label="平行线与截线示意图">
+        <line x1="55" y1="78" x2="455" y2="78" class="geoLine"/>
+        <line x1="55" y1="178" x2="455" y2="178" class="geoLine"/>
+        <line x1="175" y1="35" x2="345" y2="225" class="geoAccent"/>
+        <path d="M208 78 A38 38 0 0 1 233 107" class="geoArc"/>
+        <path d="M286 178 A42 42 0 0 1 253 151" class="geoArc alt"/>
+        <text x="72" y="63" class="geoLabel">l₁</text>
+        <text x="72" y="164" class="geoLabel">l₂</text>
+        <text x="236" y="105" class="geoLabel">68°</text>
+        <text x="205" y="154" class="geoLabel">112°</text>
+        <text x="352" y="224" class="geoLabel">截线</text>
+        <text x="178" y="239" class="geoCaption">l₁ ∥ l₂ → 同旁内角互补</text>
+      </svg>
+    `
+  },
+  "triangles-congruence": {
+    title: "SAS 全等判定",
+    note: "两边和它们夹着的角对应相等时，可用 SAS 判定两个三角形全等。",
+    svg: `
+      <svg viewBox="0 0 520 280" role="img" aria-label="三角形 SAS 全等示意图">
+        <polygon points="72,220 170,62 255,220" class="geoShape"/>
+        <polygon points="310,220 408,62 493,220" class="geoShape"/>
+        <line x1="72" y1="220" x2="170" y2="62" class="geoAccent"/>
+        <line x1="170" y1="62" x2="255" y2="220" class="geoAccent"/>
+        <line x1="310" y1="220" x2="408" y2="62" class="geoAccent"/>
+        <line x1="408" y1="62" x2="493" y2="220" class="geoAccent"/>
+        <path d="M155 87 Q170 104 185 88" class="geoArc"/>
+        <path d="M393 87 Q408 104 423 88" class="geoArc"/>
+        <text x="61" y="240" class="geoLabel">B</text>
+        <text x="164" y="53" class="geoLabel">A</text>
+        <text x="252" y="240" class="geoLabel">C</text>
+        <text x="300" y="240" class="geoLabel">E</text>
+        <text x="402" y="53" class="geoLabel">D</text>
+        <text x="490" y="240" class="geoLabel">F</text>
+        <text x="106" y="137" class="geoLabel">AB=DE</text>
+        <text x="190" y="137" class="geoLabel">AC=DF</text>
+        <text x="340" y="248" class="geoCaption">两边 + 夹角 → △ABC ≌ △DEF</text>
+      </svg>
+    `
+  },
+  "special-triangles": {
+    title: "直角三角形与勾股定理",
+    note: "直角三角形里，斜边最长；6-8-10 是最常见的勾股数组之一。",
+    svg: `
+      <svg viewBox="0 0 520 270" role="img" aria-label="6-8-10直角三角形示意图">
+        <polygon points="110,215 390,215 110,65" class="geoShape"/>
+        <path d="M110 195 L130 195 L130 215" class="geoThin"/>
+        <line x1="110" y1="215" x2="390" y2="215" class="geoAccent"/>
+        <line x1="110" y1="65" x2="110" y2="215" class="geoAccent"/>
+        <line x1="110" y1="65" x2="390" y2="215" class="geoLine"/>
+        <text x="240" y="238" class="geoLabel">8</text>
+        <text x="75" y="145" class="geoLabel">6</text>
+        <text x="244" y="132" class="geoLabel">10</text>
+        <text x="96" y="235" class="geoLabel">A</text>
+        <text x="392" y="235" class="geoLabel">B</text>
+        <text x="96" y="55" class="geoLabel">C</text>
+        <text x="170" y="35" class="geoCaption">6² + 8² = 10²</text>
+      </svg>
+    `
+  },
+  "quadrilaterals": {
+    title: "四边形性质对照",
+    note: "判断四边形题时先定类型；平行四边形看对边，菱形看对角线垂直，梯形看中位线。",
+    svg: `
+      <svg viewBox="0 0 520 300" role="img" aria-label="四边形性质示意图">
+        <polygon points="62,90 210,90 170,190 24,190" class="geoShape"/>
+        <line x1="62" y1="90" x2="210" y2="90" class="geoAccent"/>
+        <line x1="24" y1="190" x2="170" y2="190" class="geoAccent"/>
+        <text x="55" y="222" class="geoCaption">平行四边形：对边平行且相等</text>
+        <polygon points="345,58 444,145 345,232 246,145" class="geoShape"/>
+        <line x1="345" y1="58" x2="345" y2="232" class="geoAccent"/>
+        <line x1="246" y1="145" x2="444" y2="145" class="geoAccent"/>
+        <path d="M345 136 L354 136 L354 145" class="geoThin"/>
+        <text x="279" y="266" class="geoCaption">菱形：对角线互相垂直平分</text>
+      </svg>
+    `
+  },
+  "similar-triangles": {
+    title: "平行线截三角形得到相似",
+    note: "DE ∥ BC 时，△ADE 与 △ABC 相似；比例要按对应边写。",
+    svg: `
+      <svg viewBox="0 0 520 310" role="img" aria-label="相似三角形示意图">
+        <polygon points="260,45 85,245 455,245" class="geoShape"/>
+        <line x1="185" y1="130" x2="338" y2="130" class="geoAccent"/>
+        <line x1="260" y1="45" x2="85" y2="245" class="geoLine"/>
+        <line x1="260" y1="45" x2="455" y2="245" class="geoLine"/>
+        <line x1="85" y1="245" x2="455" y2="245" class="geoLine"/>
+        <text x="252" y="36" class="geoLabel">A</text>
+        <text x="70" y="263" class="geoLabel">B</text>
+        <text x="457" y="263" class="geoLabel">C</text>
+        <text x="170" y="124" class="geoLabel">D</text>
+        <text x="342" y="124" class="geoLabel">E</text>
+        <text x="218" y="122" class="geoLabel">DE ∥ BC</text>
+        <text x="150" y="286" class="geoCaption">AD/AB = AE/AC = DE/BC</text>
+      </svg>
+    `
+  },
+  "trig": {
+    title: "锐角三角函数的三条边",
+    note: "先确定目标角 A，再标对边、邻边、斜边；不要把 sin、cos、tan 的边比混起来。",
+    svg: `
+      <svg viewBox="0 0 520 290" role="img" aria-label="三角函数边比示意图">
+        <polygon points="105,230 410,230 410,72" class="geoShape"/>
+        <path d="M410 210 L390 210 L390 230" class="geoThin"/>
+        <path d="M150 230 A46 46 0 0 0 124 196" class="geoArc"/>
+        <line x1="105" y1="230" x2="410" y2="230" class="geoAccent"/>
+        <line x1="410" y1="72" x2="410" y2="230" class="geoAccent"/>
+        <line x1="105" y1="230" x2="410" y2="72" class="geoLine"/>
+        <text x="96" y="252" class="geoLabel">A</text>
+        <text x="413" y="252" class="geoLabel">B</text>
+        <text x="414" y="70" class="geoLabel">C</text>
+        <text x="236" y="253" class="geoLabel">邻边</text>
+        <text x="426" y="153" class="geoLabel">对边</text>
+        <text x="237" y="139" class="geoLabel">斜边</text>
+        <text x="72" y="52" class="geoCaption">sinA=对/斜，cosA=邻/斜，tanA=对/邻</text>
+      </svg>
+    `
+  },
+  "circle": {
+    title: "圆周角、弦、半径与切线",
+    note: "圆题常把半径、弦心距、半弦组成直角三角形；切线一定垂直过切点半径。",
+    svg: `
+      <svg viewBox="0 0 520 320" role="img" aria-label="圆的性质示意图">
+        <circle cx="260" cy="160" r="105" class="geoShape"/>
+        <line x1="169" y1="214" x2="351" y2="214" class="geoAccent"/>
+        <line x1="260" y1="160" x2="260" y2="214" class="geoThin"/>
+        <line x1="260" y1="160" x2="351" y2="214" class="geoLine"/>
+        <line x1="365" y1="63" x2="455" y2="20" class="geoAccent"/>
+        <line x1="260" y1="160" x2="365" y2="63" class="geoLine"/>
+        <path d="M352 74 L363 85 L374 73" class="geoThin"/>
+        <text x="250" y="153" class="geoLabel">O</text>
+        <text x="160" y="236" class="geoLabel">A</text>
+        <text x="354" y="236" class="geoLabel">B</text>
+        <text x="260" y="236" class="geoLabel">M</text>
+        <text x="370" y="60" class="geoLabel">T</text>
+        <text x="284" y="198" class="geoLabel">r</text>
+        <text x="189" y="252" class="geoCaption">OM ⟂ AB，AM = MB</text>
+        <text x="300" y="35" class="geoCaption">OT ⟂ 切线</text>
+      </svg>
+    `
+  }
+};
+
+function renderGeometryDiagram(module) {
+  const diagram = geometryDiagrams[module.id];
+  if (!diagram) return "";
+  return `
+    <section class="card diagramCard">
+      <div class="diagramCopy">
+        <h4>图形辅助理解</h4>
+        <p>${formatMath(diagram.note)}</p>
+      </div>
+      <div class="diagramWrap">
+        <h5>${formatMath(diagram.title)}</h5>
+        ${diagram.svg}
+      </div>
+    </section>
+  `;
+}
+
 function moduleTemplate(module, index) {
   const exercises = module.exercises.map((exercise, i) => `
     <details class="exercise">
@@ -1266,6 +1431,7 @@ function moduleTemplate(module, index) {
             </div>
           </section>
         </div>
+        ${renderGeometryDiagram(module)}
         <section class="card" style="margin-top:20px;">
           <h4>习题与详细解答</h4>
           <div class="exerciseList">${exercises}</div>
