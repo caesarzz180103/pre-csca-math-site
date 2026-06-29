@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pre-CSCA G11 数学知识训练站</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__copy">
+      <p class="eyebrow">Pre-CSCA Math Knowledge List - G11</p>
+      <h1>预备 CSCA 数学知识训练站</h1>
+      <p class="hero__lead">
+        根据你提供的 G11 预备 CSCA 数学知识清单整理：每个模块包含知识点分析、例题讲解、练习题和详细解题步骤。
+      </p>
+      <div class="hero__note">
+        说明：练习题为 CSCA-style / 中国高考同难度改编 / 国际校入学考相近题；除非特别标注，不声称为官方真题。
+      </div>
+    </div>
+    <aside class="hero__panel">
+      <div class="stat">
+        <strong id="moduleCount">0</strong>
+        <span>知识模块</span>
+      </div>
+      <div class="stat">
+        <strong id="exerciseCount">0</strong>
+        <span>练习题</span>
+      </div>
+      <button id="expandAll" type="button">展开全部解答</button>
+      <button id="collapseAll" type="button">收起全部解答</button>
+    </aside>
+  </header>
+
+  <main class="layout">
+    <nav class="sidebar" aria-label="知识模块导航">
+      <div class="searchBox">
+        <label for="searchInput">搜索模块 / 题目</label>
+        <input id="searchInput" type="search" placeholder="例如：二次方程、相似、圆" />
+      </div>
+      <div id="navList" class="navList"></div>
+    </nav>
+
+    <section class="content">
+      <div class="toolbar">
+        <div>
+          <h2>学习路径</h2>
+          <p>建议先代数后几何；每个模块先看方法，再做题，最后对照步骤。</p>
+        </div>
+        <button id="printPage" type="button">打印 / 保存 PDF</button>
+      </div>
+      <div id="moduleContainer"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>本地文件：打开 <code>index.html</code> 即可使用。内容根据 PDF 清单整理并补充讲解与练习。</p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
